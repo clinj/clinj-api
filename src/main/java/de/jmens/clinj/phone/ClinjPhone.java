@@ -15,7 +15,7 @@ public interface ClinjPhone extends AutoCloseable {
 
 	OutboundCall newCall(String callee);
 
-	CompletableFuture<PhoneState> shutdown();
+	CompletableFuture<Boolean> shutdown();
 
 	Collection<Call> getCalls();
 
