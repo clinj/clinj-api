@@ -9,19 +9,19 @@ import java.util.concurrent.CompletableFuture;
 
 public interface ClinjPhone extends AutoCloseable {
 
-	ClinjPhone addInboundListener(InboundCallListener inboundListener);
-
 	CompletableFuture<Boolean> register();
 
 	OutboundCall newCall(String callee);
 
-	CompletableFuture<Boolean> shutdown();
+	ClinjPhone addInboundListener(InboundCallListener inboundListener);
 
 	Collection<Call> getCalls();
 
 	Collection<OutboundCall> getOutboundCalls();
 
 	Collection<InboundCall> getInboundCalls();
+
+	CompletableFuture<Boolean> shutdown();
 
 	default Optional<InboundCall> getInboundCall(String callId) {
 		return getInboundCalls()
