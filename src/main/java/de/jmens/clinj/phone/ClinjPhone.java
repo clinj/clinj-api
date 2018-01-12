@@ -1,13 +1,15 @@
 package de.jmens.clinj.phone;
 
-import static io.vavr.control.Try.of;
+import static org.slf4j.LoggerFactory.getLogger;
 
-import io.vavr.control.Try;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+import org.slf4j.Logger;
 
 public interface ClinjPhone extends AutoCloseable {
+
+	Logger LOGGER = getLogger(ClinjPhone.class);
 
 	CompletableFuture<Boolean> register();
 
@@ -44,14 +46,17 @@ public interface ClinjPhone extends AutoCloseable {
 				.findFirst();
 	}
 
-	static Try<ClinjPhone> getPhone(String username, String password) {
+	static Optional<ClinjPhone> getPhone(String username, String password) {
 		return getPhone(username, password, "de.jmens.clinj.phone.ClinjPhoneImpl");
 	}
 
-	static Try<ClinjPhone> getPhone(String username, String password, String type) {
-		return Try.of(() -> {
+	static Optional<ClinjPhone> getPhone(String username, String password, String type) {
+		try {
 			final Class<? extends ClinjPhone> clazz = (Class<? extends ClinjPhone>) Class.forName(type);
-			return clazz.getConstructor(String.class, String.class).newInstance(username, password);
-		});
+			return Optional.ofNullable(clazz.getConstructor(String.class, String.class).newInstance(username, password));
+		} catch (Exception e) {
+			LOGGER.warn("Failed to instantiate {}", type);
+			return Optional.empty();
+		}
 	}
 }

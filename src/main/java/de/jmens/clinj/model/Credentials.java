@@ -1,9 +1,6 @@
 package de.jmens.clinj.model;
 
-import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
-import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
-import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
-import static org.apache.commons.lang3.builder.ToStringStyle.SHORT_PREFIX_STYLE;
+import static java.text.MessageFormat.format;
 
 public class Credentials {
 
@@ -28,18 +25,24 @@ public class Credentials {
 		return password;
 	}
 
-	@Override
-	public String toString() {
-		return reflectionToString(this, SHORT_PREFIX_STYLE, false);
+	private String getHash() {
+		StringBuilder builder = new StringBuilder();
+		builder.append(user);
+		builder.append(password == null ? "null" : new String(password));
+		return builder.toString();
 	}
-
-	@Override
-	public boolean equals(final Object o) {
-		return reflectionEquals(this, o);
-	}
-
 	@Override
 	public int hashCode() {
-		return reflectionHashCode(this);
+		return getHash().hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return getHash().equals(obj);
+	}
+
+	@Override
+	public String toString() {
+		return format("{0}[{1}:XXXXX]", getClass().getSimpleName(), user);
 	}
 }

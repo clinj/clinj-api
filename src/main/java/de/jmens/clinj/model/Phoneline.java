@@ -1,15 +1,10 @@
 package de.jmens.clinj.model;
 
+import static java.text.MessageFormat.format;
 import static java.util.Collections.emptyList;
-import static org.apache.commons.lang3.StringUtils.defaultString;
-import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
-import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
-import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
-import static org.apache.commons.lang3.builder.ToStringStyle.SHORT_PREFIX_STYLE;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import org.apache.commons.lang3.ObjectUtils;
 
 public class Phoneline {
 
@@ -29,8 +24,8 @@ public class Phoneline {
 	public Phoneline(String id, Credentials credentials, String name, List<Profile> profiles) {
 		this.credentials = credentials;
 		this.id = id;
-		this.name = defaultString(name);
-		this.profiles = ObjectUtils.defaultIfNull(profiles, emptyList());
+		this.name = name == null ? "" : name;
+		this.profiles = profiles == null ? emptyList() : profiles;
 	}
 
 	public String getUsername() {
@@ -57,17 +52,17 @@ public class Phoneline {
 	}
 
 	@Override
-	public String toString() {
-		return reflectionToString(this, SHORT_PREFIX_STYLE);
-	}
-
-	@Override
-	public boolean equals(final Object o) {
-		return reflectionEquals(this, o);
-	}
-
-	@Override
 	public int hashCode() {
-		return reflectionHashCode(this);
+		return id.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return id.equals(obj);
+	}
+
+	@Override
+	public String toString() {
+		return format("{0}[id:{1}", getClass().getSimpleName(), id);
 	}
 }

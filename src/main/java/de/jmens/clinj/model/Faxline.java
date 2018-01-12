@@ -1,9 +1,6 @@
 package de.jmens.clinj.model;
 
-import static org.apache.commons.lang3.builder.EqualsBuilder.reflectionEquals;
-import static org.apache.commons.lang3.builder.HashCodeBuilder.reflectionHashCode;
-import static org.apache.commons.lang3.builder.ToStringBuilder.reflectionToString;
-import static org.apache.commons.lang3.builder.ToStringStyle.SHORT_PREFIX_STYLE;
+import static java.text.MessageFormat.format;
 
 public class Faxline {
 
@@ -21,21 +18,6 @@ public class Faxline {
 		this.id = id;
 	}
 
-	@Override
-	public String toString() {
-		return reflectionToString(this, SHORT_PREFIX_STYLE);
-	}
-
-	@Override
-	public boolean equals(final Object o) {
-		return reflectionEquals(this, o);
-	}
-
-	@Override
-	public int hashCode() {
-		return reflectionHashCode(this);
-	}
-
 	public void setCanSend(Boolean canSend) {
 		this.canSend = canSend;
 	}
@@ -50,5 +32,20 @@ public class Faxline {
 
 	public void setTagline(String tagline) {
 		this.tagline = tagline;
+	}
+
+	@Override
+	public int hashCode() {
+		return id == null ? -1 : id.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return id == null ? false : id.equals(obj);
+	}
+
+	@Override
+	public String toString() {
+		return format("Faxline[id:{0}]", id);
 	}
 }
