@@ -22,7 +22,6 @@ maven-build:
     paths:
       - target/*.jar
       - target/apidocs/*
-      - target/apidocs/*.html
       - target/apidocs/**/*
 
 pages-deploy:
