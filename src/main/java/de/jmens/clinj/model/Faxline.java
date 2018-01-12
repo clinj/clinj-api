@@ -2,12 +2,34 @@ package de.jmens.clinj.model;
 
 import static java.text.MessageFormat.format;
 
+/**
+ * Represents a sipgate fax line. Fax lines are used to send fax messages.
+ */
 public class Faxline {
 
+	/**
+	 * Id of this fax line. Something like <code>f0</code> or <code>f1</code>.
+	 */
 	private String id;
+
+	/**
+	 * Indicates if this fax line is in condition to send fax messages.
+	 */
 	private Boolean canSend;
+
+	/**
+	 * Indicates if this fax line is in condition to receive fax messages.
+	 */
 	private Boolean canReceive;
+
+	/**
+	 * User provided name of this faxlines. Something like <code>Fax Office</code>.
+	 */
 	private String alias;
+
+	/**
+	 * User provided part of the tagline applied to each outgoing fax message.
+	 */
 	private String tagline;
 
 	public String getId() {

@@ -4,6 +4,9 @@ import static java.text.MessageFormat.format;
 
 import java.util.List;
 
+/**
+ * Represents a human contact as used in directories.
+ */
 public class Contact {
 
 	private String id;

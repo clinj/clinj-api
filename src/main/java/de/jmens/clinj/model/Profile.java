@@ -3,8 +3,8 @@ package de.jmens.clinj.model;
 import static java.text.MessageFormat.format;
 
 /**
- * Represents a sipgate telephony profile. The profile is formerly known as person-callgroup.
- * A profile is used to group several telephony endpoints to one physical person.
+ * Represents a sipgate telephony profile, formerly known as person-callgroup.
+ * A profiles main purpose is used to group several telephony endpoints to one physical person.
  */
 public class Profile {
 
@@ -18,15 +18,26 @@ public class Profile {
 	 */
 	private String alias;
 
+	/**
+	 * Constructs a new Profile instance.
+	 * @param id Profile id. Something like <code>p0</code> or <code>p1</code>.
+	 * @param alias A user provided alias. Someting likd <code>Jane</code> or <code>John</code>;
+	 */
 	public Profile(String id, String alias) {
 		this.id = id;
 		this.alias = alias;
 	}
 
+	/**
+	 * @return This profiles {{@link #id}}
+	 */
 	public String getId() {
 		return id;
 	}
 
+	/**
+	 * @return This profiles {{@link #alias}}
+	 */
 	public String getAlias() {
 		return alias;
 	}
