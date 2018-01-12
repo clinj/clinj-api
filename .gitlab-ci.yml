@@ -18,3 +18,15 @@ maven-build:
   artifacts:
     paths:
       - target/*.jar
+
+pages-deploy:
+  stage: deploy
+  script:
+  - mkdir .public
+  - cp -r target/apidocs/* .public
+  - mv .public public
+  artifacts:
+    paths:
+    - public
+  only:
+  - master
