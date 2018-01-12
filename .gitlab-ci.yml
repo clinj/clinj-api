@@ -23,7 +23,7 @@ maven-build:
       - target/*.jar
       - target/apidocs/**/*
 
-pages-deploy:
+pages:
   stage: deploy
   script:
   - mkdir .public
