@@ -21,7 +21,6 @@ maven-build:
   artifacts:
     paths:
       - target/*.jar
-      - target/apidocs/*
       - target/apidocs/**/*
 
 pages-deploy:
