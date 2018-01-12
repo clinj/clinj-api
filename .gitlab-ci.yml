@@ -27,7 +27,7 @@ pages-deploy:
   stage: deploy
   script:
   - mkdir .public
-  - cp -r target/apidocs/* .public
+  - cp -r target/apidocs .public
   - mv .public public
   artifacts:
     paths:
